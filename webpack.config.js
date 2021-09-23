@@ -6,18 +6,16 @@ module.exports = {
         path: __dirname + '/dist',
         filename: 'bundle.js'
     },
-    target: 'web',
     devServer: {
         static: {
             directory: __dirname + '/dist'
-        },
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
-            inject: 'body',
             filename: "index.html",
-            template: "./src/index.html",
-        }),
+            template: "./src/index.html"
+        })
     ],
     resolve: {
         extensions: ['.js']
