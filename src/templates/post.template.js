@@ -3,9 +3,12 @@ export function renderPost(post, renderButton = true) {
         ? '<li class="tag tag-blue tag-rounded">News</li>'
         : '<li class="tag tag-rounded">Note</li>'
 
-    const button = (JSON.parse(localStorage.getItem('favorites')) || []).includes(post.id)
-        ? `<button class="button-round button-small button-danger" data-id="${post.id}">Remove</button>`
-        : `<button class="button-round button-small button-primary" data-id="${post.id}">Favorite</button>`
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+    const candidate = favorites.find(p => p.id === post.id)
+
+    const button = candidate
+        ? `<button class="button-round button-small button-danger" data-id="${post.id}" data-title="${post.title}">Remove</button>`
+        : `<button class="button-round button-small button-primary" data-id="${post.id}" data-title="${post.title}">Favorite</button>`
 
     return `
         <div class="panel">
